@@ -6,11 +6,12 @@
 /*   By: rmaury <rmaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/16 17:15:46 by rmaury            #+#    #+#             */
-/*   Updated: 2015/03/09 18:41:36 by rmaury           ###   ########.fr       */
+/*   Updated: 2015/03/12 14:04:35 by rmaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
+#include <stdio.h>
 
 void	cd_err(char **argv)
 {
@@ -35,7 +36,7 @@ char	**pwd_modifier(char **env, char **argv, char *path)
 
 	pwd = ft_strcmp_array("PWD=", env);
 	i = ft_strcmp_array("OLDPWD=", env);
-	if (argv[1] && (strcmp(argv[1], "..") == 0))
+	if (argv[1] && (ft_strcmp(argv[1], "..") == 0))
 	{
 		ft_strclr(ft_strrchr(path, '/'));
 		ft_strclr(ft_strrchr(path, '/'));

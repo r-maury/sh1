@@ -6,7 +6,7 @@
 /*   By: rmaury <rmaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/13 16:02:48 by rmaury            #+#    #+#             */
-/*   Updated: 2015/03/09 18:44:21 by rmaury           ###   ########.fr       */
+/*   Updated: 2015/03/12 14:50:03 by rmaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**create_new(char **env, char **argv)
 		env_cpy[i] = ft_strdup(env[i]);
 		i++;
 	}
-	env_cpy[i] = ft_strjoin(argv[1], "=");
+	env_cpy[i] = ft_strdup(argv[1]);
 	if (argv[2])
 		env_cpy[i] = ft_strjoin(env_cpy[i], argv[2]);
 	return (env_cpy);
@@ -39,14 +39,18 @@ char	**setenv_builtin(char **env, char **argv)
 		ft_printtab(env);
 	else if (argv[3])
 		ft_putendl("setenv: Too many arguments.");
-	else if ((i = ft_strcmp_array(argv[1], env)) >= 0)
-	{
-		ft_strclr(env[i]);
-		env[i] = ft_strjoin(argv[1], "=");
-		if (argv[2])
-			env[i] = ft_strjoin(env[i], argv[2]);
-	}
 	else
-		env = create_new(env, argv);
+	{
+		argv[1] = ft_strjoin(argv[1], "=");
+		if ((i = ft_strcmp_array(argv[1], env)) >= 0)
+		{
+			ft_strclr(env[i]);
+			env[i] = ft_strdup(argv[1]);
+			if (argv[2])
+				env[i] = ft_strjoin(env[i], argv[2]);
+		}
+		else
+			env = create_new(env, argv);
+	}
 	return (env);
 }

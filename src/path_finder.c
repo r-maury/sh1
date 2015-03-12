@@ -6,7 +6,7 @@
 /*   By: rmaury <rmaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/10 17:15:50 by rmaury            #+#    #+#             */
-/*   Updated: 2015/03/10 16:16:30 by rmaury           ###   ########.fr       */
+/*   Updated: 2015/03/12 14:43:56 by rmaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ char	**path_finder(char **env)
 	char	**path;
 	int		i;
 
+	path = NULL;
 	if ((i = ft_strcmp_array("PATH=", env)) >= 0)
 		path = ft_strsplit(env[i] + 5, ':');
-	else
+	if (i == -1 || path[0] == NULL)
 	{
 		path = (char**)malloc(sizeof(char*) * 2);
 		path[0] = ft_strdup("no");
