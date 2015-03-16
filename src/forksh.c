@@ -6,7 +6,7 @@
 /*   By: rmaury <rmaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 20:30:24 by rmaury            #+#    #+#             */
-/*   Updated: 2015/03/12 14:46:16 by rmaury           ###   ########.fr       */
+/*   Updated: 2015/03/16 17:45:41 by rmaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		pathexec(char **argv)
 
 void	not_found(char **argv, char *path)
 {
-	if (access(argv[0], F_OK) == -1 && ft_strncmp(path, "no", 2) != 0)
+	if (access(argv[0], X_OK) == -1 && ft_strncmp(path, "no", 2) != 0)
 	{
 		ft_putstr("sh1: Access denied: ");
 		ft_putendl(argv[0]);

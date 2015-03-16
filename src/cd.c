@@ -6,17 +6,19 @@
 /*   By: rmaury <rmaury@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/16 17:15:46 by rmaury            #+#    #+#             */
-/*   Updated: 2015/03/12 14:04:35 by rmaury           ###   ########.fr       */
+/*   Updated: 2015/03/16 17:42:00 by rmaury           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sh1.h"
-#include <stdio.h>
 
 void	cd_err(char **argv)
 {
 	if (argv[1] && access(argv[1], F_OK) == 0 && chdir(argv[1]) == -1)
-		ft_putendl("Directory access denied");
+	{
+		ft_putstr("Directory access denied: ");
+		ft_putendl(argv[1]);
+	}
 	else
 	{
 		if (argv[1])
@@ -51,7 +53,7 @@ char	**pwd_modifier(char **env, char **argv, char *path)
 
 void	home_opt(char **argv, char **env, char *home, char *path)
 {
-	if (ft_strcmp_array(argv[1], env) >= 0)
+	if (ft_strcmp_array("HOME", env) >= 0)
 	{
 		if (!argv[1] || (ft_strcmp(argv[1], "HOME") == 0))
 		{
